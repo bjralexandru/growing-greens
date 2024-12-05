@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  nginx1:
+    image: nginx
+    container_name: nginx1
+    ports:
+      - "8443:8443"
+    networks:
+      - "my-bridge-network"
+    command: ["nginx", "-g", "daemon off;"]
+  
+  nginx2:
+    image: nginx
+    container_name: nginx2
+    ports:
+      - "8444:8443"
+    networks:
+      - "my-bridge-network"
+    command: ["nginx", "-g", "daemon off;"]
+
+  nginx3:
+    image: nginx
+    container_name: nginx3
+    ports:
+      - "8445:8443"
+    networks:
+      - "my-bridge-network"
+    command: ["nginx", "-g", "daemon off;"]
+
+networks:
+  my-bridge-network:
+    driver: bridge

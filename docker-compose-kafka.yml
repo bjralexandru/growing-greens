@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - kafka-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092" # Expose Kafka broker to the host
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    volumes:
+      - /mnt/disks/kafka-data:/var/lib/kafka/data
+    networks:
+      - kafka-network
+
+  app1:
+    image: your-app-image
+    container_name: app1
+    environment:
+      KAFKA_BROKER: kafka:9092
+    networks:
+      - kafka-network
+
+  app2:
+    image: your-app-image
+    container_name: app2
+    environment:
+      KAFKA_BROKER: kafka:9092
+    networks:
+      - kafka-network
+
+networks:
+  kafka-network:
+    driver: bridge
