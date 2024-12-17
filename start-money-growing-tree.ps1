@@ -5,7 +5,7 @@ if (-not (Get-Process -Name "Docker Desktop" -ErrorAction SilentlyContinue)) {
 }
 
 # Define the folders
-$folders = @("data-aggregator", "trading-bot", "mgt-dashboard", "mgt-trading-algorithms")
+$folders = @("mgt-data-aggregator", "mgt-trading-bot", "mgt-dashboard", "mgt-trading-algorithms")
 
 # Define the network name
 $networkName = "my_network"
@@ -85,12 +85,12 @@ function Cleanup-DanglingImages {
 }
 
 # Display menu for user selection
-Write-Host "Choose an option:" -ForegroundColor Green
+Write-Host "Choose an option:" -ForegroundColor Gray
 Write-Host "1. Update All" -ForegroundColor Cyan
-Write-Host "2. Update data-aggregator" -ForegroundColor Cyan
-Write-Host "3. Update trading-bot" -ForegroundColor Cyan
-Write-Host "4. Update money-growing-tree-frontend" -ForegroundColor Cyan
-Write-Host "5. Update mgt-trading-algorithms" -ForegroundColor Cyan
+Write-Host "2. Update mgt-data-aggregator" -ForegroundColor DarkGreen
+Write-Host "3. Update mgt-trading-bot" -ForegroundColor DarkRed
+Write-Host "4. Update mgt-dashboard" -ForegroundColor DarkYellow
+Write-Host "5. Update mgt-trading-algorithms" -ForegroundColor DarkMagenta
 
 $choice = Read-Host "Enter your choice (1-5)"
 
