@@ -5,7 +5,7 @@ if (-not (Get-Process -Name "Docker Desktop" -ErrorAction SilentlyContinue)) {
 }
 
 # Define the folders
-$folders = @("data-aggregator", "trading-bot", "money-growing-tree-frontend", "mgt-trading-algorithms")
+$folders = @("data-aggregator", "trading-bot", "mgt-dashboard", "mgt-trading-algorithms")
 
 # Define the network name
 $networkName = "my_network"
